@@ -30,11 +30,11 @@ int main()
     costs[0] = 0;
     costs[1] = abs(heights[0] - heights[1]);
 
-    int curcost, i = 2, j = 1, cheapest = 10000;
+    int curcost, i = 2, j = 1, cheapest = 1e9 + 7;
     while (i < N)
     {
         // find min potential cost to jump from the last K stones (but not going behind the 0th stone)
-        while (j < K || j < i)
+        while (j <= K && j <= i)
         {
             curcost = costs[i - j] + abs(heights[i] - heights[i - j]);
             if (curcost < cheapest)
@@ -45,7 +45,7 @@ int main()
         }
 
         costs[i] = cheapest;
-        cheapest = 10000;
+        cheapest = 1e9 + 7;
         j = 1;
         i++;
     }
