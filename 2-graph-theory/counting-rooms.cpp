@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-#include "helpers.h"
+#include "../helpers.h"
 using namespace std;
 /*
 You are given a map of a building, and your task is to count the number of its rooms. The size of
