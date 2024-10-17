@@ -37,7 +37,7 @@ int main()
     int k;
     cin >> k;
 
-    // create adjacency lists for each house/node
+    // get applicant and apartment info
     vector<int> applicants(0, n);
     int a;
     for (int i = 0; i < n; ++i)
@@ -68,10 +68,9 @@ int main()
     int count = 0;
     int i = 0, j = 0;
 
-    // walk through each array, checking if aptr is in range of bptr
+    // walk through each array, checking if applicants[i] is in range of apartments[j]
     while (i < asize && j < bsize)
     {
-        // cout << abs(*aptr - *bptr) << endl;
         if (abs(applicants[i] - apartments[j]) <= k)
         {
             // if applicant and apartment are a match
@@ -86,7 +85,7 @@ int main()
         }
         else
         {
-            // bptr apartment is too small for any applicant
+            // if apartment is too small for any applicant
             j++;
         }
     }
