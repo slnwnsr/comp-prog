@@ -27,8 +27,7 @@ Ex. input:          output:
 4 8 3               -1
 
 Notes:
-- Sort the price array and binary search to find the largest <= ticket price for the customer
-- Put price array into a binary search tree
+- Put price array into BST and binary search to find the largest <= ticket price for each customer
 */
 
 int main()
@@ -37,19 +36,35 @@ int main()
     cin >> n;
     int m;
     cin >> m;
-   // get customer and ticket info
-    multiset<int> customers;
+    // get customer and ticket info
+    multiset<int> prices;
     int a;
     for (int i = 0; i < n; ++i)
     {
         cin >> a;
-        customers.insert(a);
+        prices.insert(a);
     }
-    vector<int> tickets(0, m);
+    vector<int> customers(0);
     int b;
     for (int i = 0; i < m; ++i)
     {
         cin >> b;
+        customers.push_back(b);
+    }
+
+    // search for customers[i] or the largest price less than customers[i] in BST
+    multiset<int>::iterator it;
+    for (int i = 0; i < m; i++)
+    {
+        it = prices.upper_bound(customers[i]);
+        if (it == prices.begin())
+        {
+            cout << "-1" << endl;
+            continue;
+        }
+        auto pr = prev(it);
+        cout << *pr << endl;
+        prices.erase(pr);
     }
 
     return 0;
